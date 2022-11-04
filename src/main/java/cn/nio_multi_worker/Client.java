@@ -11,14 +11,13 @@ public class Client {
 
         SocketChannel sc = SocketChannel.open();
         sc.connect(new InetSocketAddress(8888));
+
         ByteBuffer buffer = ByteBuffer.allocate(20);
         buffer.put(StandardCharsets.UTF_8.encode("nihao"));
         buffer.flip();
         sc.write(buffer);
-        Thread.sleep(5000);
-        
         sc.close();
-        
-        
+
+
     }
 }
