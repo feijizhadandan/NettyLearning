@@ -4,6 +4,10 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
 import java.net.InetSocketAddress;
@@ -36,6 +40,5 @@ public class HelloClient {
                 .channel()
                 // 向服务器发送数据
                 .writeAndFlush("hello world");
-        
     }
 }

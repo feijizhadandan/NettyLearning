@@ -34,9 +34,11 @@ public class Client {
                     public void channelActive(ChannelHandlerContext ctx) throws Exception {
                         // (6.2) 发送数据的格式为 字节数组，或用 ByteBuf 进行封装，不能直接发送字符串。
                         // 也可以添加一个 StringEncoder 处理器，会帮你自动编码为字节数组。
-                        ByteBuf buffer = ctx.alloc().buffer(20);
-                        buffer.writeBytes("连接建立成功".getBytes());
-                        ctx.writeAndFlush(buffer);
+                        for (int i = 0; i < 3; i++) {
+                            ByteBuf buffer = ctx.alloc().buffer(20);
+                            buffer.writeBytes("连接建立成功(1) —— ".getBytes());
+                            ctx.writeAndFlush(buffer);
+                        }
                     }
                 });
             }
