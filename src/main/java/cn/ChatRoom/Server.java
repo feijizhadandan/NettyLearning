@@ -1,6 +1,7 @@
 package cn.ChatRoom;
 
-import cn.ChatRoom.codec.MessageCodecSharable;
+import cn.ChatRoom.protocol.codec.MessageCodecSharable;
+import cn.ChatRoom.protocol.decode.ProtocolFrameDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -24,7 +25,7 @@ public class Server {
             protected void initChannel(NioSocketChannel socketChannel) throws Exception {
                 ChannelPipeline pipeline = socketChannel.pipeline();
                 // 防止半包问题的发生，需要用帧解码器确认数据包长度，保证传给下一个处理器的 byteBuf 是一个完整的数据包
-                pipeline.addLast("LTC", new LengthFieldBasedFrameDecoder(1024, 16, 4, 0, 0));
+                pipeline.addLast("LTC", new ProtocolFrameDecoder());
                 pipeline.addLast("messageCodec", messageCodecSharable);
                 pipeline.addLast("defaultLoopGroup", new ChannelInboundHandlerAdapter() {
                     @Override

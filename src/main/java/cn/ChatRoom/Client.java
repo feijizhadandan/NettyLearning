@@ -1,6 +1,6 @@
 package cn.ChatRoom;
 
-import cn.ChatRoom.codec.MessageCodecSharable;
+import cn.ChatRoom.protocol.codec.MessageCodecSharable;
 import cn.ChatRoom.common.MessageType;
 import cn.ChatRoom.entity.TextMessage;
 import io.netty.bootstrap.Bootstrap;
